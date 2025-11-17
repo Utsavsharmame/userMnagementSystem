@@ -1,10 +1,12 @@
-const  API_URL = 'http://localhost:5000/api/users';
+// Backend routes are mounted at /users in the backend server
+const API_URL = 'http://localhost:5000/users';
 
 //all the users
 export const getAllUsers = async () => {
     try{ 
-        const response =await fetch(API_URL);
-        const data =await response.json();
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+        const data = await response.json();
         return data;
 
 
@@ -19,7 +21,7 @@ export const getAllUsers = async () => {
 //add a users
 export const addUser = async(userData) => {
     try{   
-        const response = await fetch(API_URL,{
+        const response = await fetch(API_URL, {
             method:'POST',
             headers:{
                 'Content-Type' : 'application/json',
@@ -27,7 +29,8 @@ export const addUser = async(userData) => {
             },
             body: JSON.stringify(userData),
         });
-        const data =await response.json();
+        if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+        const data = await response.json();
         return data;
     }
     catch(error){
@@ -41,7 +44,7 @@ export const addUser = async(userData) => {
 // update user
 export const updateUser = async( id, userData) =>{
     try{
-        const response = await fetch(`${API_URL}/${id}`,{
+        const response = await fetch(`${API_URL}/${id}`, {
             method:'PUT',
             headers:{
                 'Content-type': 'application/json',
@@ -50,6 +53,7 @@ export const updateUser = async( id, userData) =>{
             body: JSON.stringify(userData),
 
         });
+        if (!response.ok) throw new Error(`Request failed: ${response.status}`);
         const data = await response.json();
         return data;
 
@@ -63,9 +67,10 @@ export const updateUser = async( id, userData) =>{
 // delete the user 
 export const deleteUser = async(id) => {
     try{  
-        const response = await fetch( `${API_URL}/${id}`,{
+        const response = await fetch(`${API_URL}/${id}`, {
             method: 'DELETE',
         });
+        if (!response.ok) throw new Error(`Request failed: ${response.status}`);
         const data = await response.json();
         return data;
 

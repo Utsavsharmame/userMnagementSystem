@@ -11,8 +11,8 @@
      <div className={`${bgColor} border px-4 py-3  rounded relative mb-4`}
      role='alert'>
        <span className=' block sm:inline'>{message}</span>  
-       <button  
-       onClick={onClose} className='absolute top-0 right-0px-4 py-3'
+       <button
+       onClick={onClose} className='absolute top-0 right-0 px-4 py-3'
        >
         <span className='text-xl'> &times; </span>
        </button>

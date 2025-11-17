@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import UserForm from './Components/userForm';
-import userList from './Components/UserList';
+import UserList from './Components/UserList';
 import Alert from './Components/Alert';
 import { getAllUsers, addUser, updateUser, deleteUser } from './services/api';
 
